@@ -52,6 +52,15 @@ public class frmMain extends JFrame {
 		btnTraceroute.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		JButton btnDetail = new JButton("DETAIL");
+		btnDetail.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				frmDetails frm = new frmDetails(frmMain.this);
+				frm.setVisible(true);
+				frm.setSize(new Dimension(480, 320));
+				frmMain.this.setVisible(false);
+			}
+		});
 		btnDetail.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		JLabel lblAdresseIp = new JLabel("Adresse IP :");
