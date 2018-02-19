@@ -27,6 +27,10 @@ public class frmMain extends JFrame {
 	
 	public frmMain() throws IOException {
 		
+		frmMain.this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmMain.this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		frmMain.this.setUndecorated(true);
+		
 		JButton btnPing = new JButton("PING");
 		btnPing.addMouseListener(new MouseAdapter() {
 			@Override

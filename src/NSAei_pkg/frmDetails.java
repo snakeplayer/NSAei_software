@@ -17,11 +17,17 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Font;
+import java.awt.Window.Type;
 
 public class frmDetails extends JFrame {
 	
 	frmDetails(JFrame frmParent) {
-			
+		
+		frmDetails.this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmDetails.this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		frmDetails.this.setUndecorated(true);
+		
 		JPanel panel = new JPanel();
 		
 		JLabel lblNetmask = new JLabel("Netmask:");
@@ -64,6 +70,7 @@ public class frmDetails extends JFrame {
 		panel.setLayout(gl_panel);
 		
 		JButton btnNewButton = new JButton("Retour");
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -139,25 +146,27 @@ public class frmDetails extends JFrame {
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnNewButton)
-						.addComponent(btnRefresh))
-					.addGap(61)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(33)
+							.addComponent(btnRefresh)))
+					.addGap(18)
 					.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(11, Short.MAX_VALUE)
-					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
+					.addGap(160)
 					.addComponent(btnRefresh)
-					.addGap(203))
+					.addGap(29))
 		);
 		this.getContentPane().setLayout(groupLayout);
-		this.setVisible(true);
 		
 		
 		this.addWindowListener(new WindowAdapter() {

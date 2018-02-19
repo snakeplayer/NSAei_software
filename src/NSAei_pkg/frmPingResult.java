@@ -30,6 +30,10 @@ public class frmPingResult extends JFrame {
 
 	public frmPingResult(JFrame frmParent, String ipAddress) {
 		
+		frmPingResult.this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmPingResult.this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		frmPingResult.this.setUndecorated(true);
+		
 		addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentHidden(ComponentEvent arg0) {

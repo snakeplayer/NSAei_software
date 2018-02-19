@@ -30,6 +30,10 @@ public class frmPing extends JFrame {
 	frmPing(JFrame frmParent) {
 		FrmParent = frmParent;
 		
+		frmPing.this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmPing.this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		frmPing.this.setUndecorated(true);
+		
 		JLabel lblText = new JLabel("Adresse IP \u00E0 PING :");
 		lblText.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblText.setHorizontalAlignment(SwingConstants.CENTER);

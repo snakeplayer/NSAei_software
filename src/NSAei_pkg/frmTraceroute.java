@@ -21,6 +21,10 @@ public class frmTraceroute extends JFrame {
 	
 	public frmTraceroute(JFrame frmParent) {
 		
+		frmTraceroute.this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmTraceroute.this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		frmTraceroute.this.setUndecorated(true);
+		
 		FrmParent = frmParent;
 		
 		JLabel lblText = new JLabel("Adresse IP \u00E0 TRACEROUTE :");

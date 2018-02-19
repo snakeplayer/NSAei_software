@@ -35,6 +35,10 @@ public class frmTracerouteResult extends JFrame {
 	
 	public frmTracerouteResult(JFrame frmParent, String ipAddress) {
 		
+		frmTracerouteResult.this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmTracerouteResult.this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		frmTracerouteResult.this.setUndecorated(true);
+		
 		
 		JButton btnBack = new JButton("Retour");
 		btnBack.addMouseListener(new MouseAdapter() {
