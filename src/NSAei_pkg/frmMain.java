@@ -22,8 +22,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.SwingConstants;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class frmMain extends JFrame {
 	
@@ -80,15 +78,23 @@ public class frmMain extends JFrame {
 		lblMasqueDeSousrseau.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
 		JButton btnX = new JButton("X");
-		btnX.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				//Process bash = Runtime.getRuntime().exec("shutdown");
-				
-				
-				
+		btnX.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				try
+				{
+					Runtime r = Runtime.getRuntime();
+					Process process = r.exec("sudo shutdown -h now");
+					
+				}
+				catch(Exception E)
+				{
+					
+					
+				}
 				
 			}
+			
 		});
 		btnX.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		
@@ -155,28 +161,154 @@ public class frmMain extends JFrame {
 		);
 		getContentPane().setLayout(groupLayout);
 		
-		GetIpAddress();
-		
-		lblIPAddress.setText(GetIpAddress());
+		lblIPAddress.setText(GetLocalAddressIPv4());
+		lblGateway.setText(GetGateway());
+		lblSubnet.setText(MaskSubNet());
 		/*
 		List<String> lst = GetGatewayAddress();
 		lblGateway.setText(lst.get(0));
 		lblSubnet.setText(lst.get(3));*/
 	}
 	
-	// Hand written codes
-	
-	public String GetIpAddress() throws IOException {
+	public String MaskSubNet()
+	{
+		try
+		{
+			Runtime r = Runtime.getRuntime();
+			Process process4 = r.exec("python netmask.py");
+			BufferedReader in4 = new BufferedReader(new InputStreamReader(process4.getInputStream()));
+			String line4 = "";
+			String tmp = "";
+            while ((line4 = in4.readLine()) != null) 
+            {
+                tmp = line4.toString();
+                
+            }
+            
+            return tmp;
+			
+	        
+	        
+		}
+		catch(Exception e )
+		{
+			
+			return "";
+			
+		}
 		
-		Process p = Runtime.getRuntime().exec("ip route | pyp \" pp[-1] | w[-1] \"");
+	}
+	
+	
+	
+	public String GetGateway()
+	{
+		try
+		{
+			Runtime r = Runtime.getRuntime();
+			Process process4 = r.exec("python gateways.py");
+			BufferedReader in4 = new BufferedReader(new InputStreamReader(process4.getInputStream()));
+			String line4 = "";
+			String tmp = "";
+            while ((line4 = in4.readLine()) != null) 
+            {
+                tmp = line4.toString();
+                
+            }
+            
+            return tmp;
+			
+	        
+	        
+		}
+		catch(Exception e )
+		{
+			
+			return "";
+			
+		}
+		
+		
+	}
+	
+	
+	
+	
+	// Hand written code
+	public String GetLocalAddressIPv4() throws UnknownHostException {
+		/*InetAddress IP = InetAddress.getLocalHost(); // THE PROB IS HERE BRO
+		return IP.getHostAddress();*/
+		try
+		{
+			Runtime r = Runtime.getRuntime();
+	        Process process = r.exec("bash ip.sh");
+			BufferedReader in = new BufferedReader(new InputStreamReader(process.getInputStream()));
+			String line = "";
+			String tmp ="";
+	        while ((line = in.readLine()) != null) 
+	        {
+	        	tmp += line.toString();
+	            //lblAdresse.setText(line.toString());
+	        }
+	        return tmp;
+			
+	        
+	        
+		}
+		catch(Exception e )
+		{
+			
+			return "";
+			
+		}
+		
+		
+	}
+	
+	public List<String> GetGatewayAddress() throws IOException {
+		String matchSubnetMask[] = { "0.0.0.0", "128.0.0.0", "192.0.0.0", "224.0.0.0", "240.0.0.0", "248.0.0.0",
+				"252.0.0.0", "254.0.0.0", "255.0.0.0", "255.128.0.0", "255.192.0.0", "255.224.0.0", "255.240.0.0",
+				"255.248.0.0", "255.252.0.0", "255.254.0.0", "255.255.0.0", "255.255.128.0", "255.255.192.0",
+				"255.255.224.0", "255.255.240.0", "255.255.248.0", "255.255.252.0", "255.255.254.0", "255.255.255.0",
+				"255.255.255.128", "255.255.255.192", "255.255.255.224", "255.255.255.240", "255.255.255.248",
+				"255.255.255.252", "255.255.255.254" };
+		String submask = "";
+		Pattern pat;
+		Matcher match;
+		List<String> result = new ArrayList<String>();
 
+		Process p = Runtime.getRuntime().exec("ip route");
 		InputStream i = p.getInputStream();
 		InputStreamReader isr = new InputStreamReader(i);
 		BufferedReader br = new BufferedReader(isr);
 
-		String ip = br.readLine();
+		pat = Pattern.compile(
+				"\\b(?:(25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9]))\\b");
+		String line = br.readLine();
+
+		while (line != null) {
+			match = pat.matcher(line);
+			while (match.find()) {
+				result.add(match.group().toString());
+					if (line.contains("/")) {
+						submask = matchSubnetMask[Integer.parseInt(line.split("/")[1].split(" ")[0])];
+						//result.add(submask);
+						submask=null;
+
+					}
+			}
+			line = br.readLine();
+		}
 		
-		return ip;
+		// index : 0 => Gateway
+			// 1 => Network
+			// 2 => Host 
+			// 3 => Submask network
+			for (String results : result) {
+				System.out.println(results);
+
+			}
+			return result;
 	}
 
 }

@@ -87,7 +87,7 @@ public class frmDetails extends JFrame {
 				{
 					
 					Runtime r = Runtime.getRuntime();
-		            Process process = r.exec("python ipv4.py");
+		            Process process = r.exec("bash ip.sh");
 					BufferedReader in = new BufferedReader(new InputStreamReader(process.getInputStream()));
 					String line = "";
 		            while ((line = in.readLine()) != null) 
