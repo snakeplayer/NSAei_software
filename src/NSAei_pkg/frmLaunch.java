@@ -1,3 +1,11 @@
+/*
+ * Authors : F. Troller, D. Schito, B. Chauche
+ * Date : 2017-2018
+ * Project : NSAei
+ * Class : frmLaunch.java
+ * Description : Launch frmMain
+ */
+
 package NSAei_pkg;
 
 import java.awt.Dimension;
@@ -11,7 +19,6 @@ public class frmLaunch {
 
 	public static void main(String[] args) throws IOException {
 		
-		
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		}
@@ -19,11 +26,10 @@ public class frmLaunch {
 			e.printStackTrace();
 		}
 		
-		
+		// Launch frmMain
 		frmMain frm = new frmMain();
 		frm.setSize(new Dimension(480, 320));
 		frm.setVisible(true);
-
 	}
 
 }

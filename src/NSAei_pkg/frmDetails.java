@@ -1,3 +1,11 @@
+/*
+ * Authors : F. Troller, D. Schito, B. Chauche
+ * Date : 2017-2018
+ * Project : NSAei
+ * Class : frmDetails.java
+ * Description : Show interface details
+ */
+
 package NSAei_pkg;
 
 import java.awt.Dimension;
@@ -72,20 +80,22 @@ public class frmDetails extends JFrame {
 		JButton btnNewButton = new JButton("Retour");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnNewButton.addMouseListener(new MouseAdapter() {
+			// Back to main frmMain
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mousePressed(MouseEvent e) {
 				frmParent.setVisible(true);
 				frmDetails.this.setVisible(false);
 			}
 		});
 		
 		JButton btnRefresh = new JButton("Refresh");
-		btnRefresh.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
+		btnRefresh.addMouseListener(new MouseAdapter() {
+			// Refresh interface info
+			@Override
+			public void mousePressed(MouseEvent arg0) {
 				try
 				{
-					
+					// Get ip address
 					Runtime r = Runtime.getRuntime();
 		            Process process = r.exec("bash ip.sh");
 					BufferedReader in = new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -95,6 +105,7 @@ public class frmDetails extends JFrame {
 		                lblAdresse.setText(line.toString());
 		            }
 					
+		            // Get MAC address
 		            Process process2 = r.exec("python mac.py");
 					BufferedReader in2 = new BufferedReader(new InputStreamReader(process2.getInputStream()));
 					String line2 = "";
@@ -104,6 +115,7 @@ public class frmDetails extends JFrame {
 		                
 		            }
 		            
+		            // Get hostname
 		            Process process3 = r.exec("python hostname.py");
 					BufferedReader in3 = new BufferedReader(new InputStreamReader(process3.getInputStream()));
 					String line3 = "";
@@ -113,7 +125,7 @@ public class frmDetails extends JFrame {
 		                
 		            }
 		            
-		            
+		            // Get gateway
 		            Process process4 = r.exec("python gateways.py");
 					BufferedReader in4 = new BufferedReader(new InputStreamReader(process4.getInputStream()));
 					String line4 = "";
@@ -123,7 +135,7 @@ public class frmDetails extends JFrame {
 		                
 		            }
 		            
-		            
+		            // Get netmask
 		            Process process5 = r.exec("python netmask.py");
 					BufferedReader in5 = new BufferedReader(new InputStreamReader(process5.getInputStream()));
 					String line5 = "";
@@ -139,58 +151,29 @@ public class frmDetails extends JFrame {
 					
 					System.out.println("erreur");
 				}
-				
 			}
 		});
+		btnRefresh.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		
 		GroupLayout groupLayout = new GroupLayout(this.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(33)
-							.addComponent(btnRefresh)))
+						.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnRefresh, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 		);
 		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+				.addGroup(groupLayout.createSequentialGroup()
 					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
-					.addGap(160)
-					.addComponent(btnRefresh)
-					.addGap(29))
+					.addGap(167)
+					.addComponent(btnRefresh, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE))
 		);
-		this.getContentPane().setLayout(groupLayout);
-		
-		
-		this.addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowOpened(WindowEvent arg0) {
-						
-				
-				InterfacesDetail();
-				
-			}
-			
-			
-			public void InterfacesDetail()
-			{
-				
-				
-				
-			}
-			
-			
-			
-			
-			
-		});
-			
+		this.getContentPane().setLayout(groupLayout);			
 	}
 }

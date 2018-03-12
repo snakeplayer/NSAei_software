@@ -1,3 +1,11 @@
+/*
+ * Authors : F. Troller, D. Schito, B. Chauche
+ * Date : 2017-2018
+ * Project : NSAei
+ * Class : frmMain.java
+ * Description : Main view. Allows to navigate through different views.
+ */
+
 package NSAei_pkg;
 
 import javax.swing.JFrame;
@@ -33,8 +41,9 @@ public class frmMain extends JFrame {
 		
 		JButton btnPing = new JButton("PING");
 		btnPing.addMouseListener(new MouseAdapter() {
+			// Show frmPing
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mousePressed(MouseEvent e) {
 				frmPing frm = new frmPing(frmMain.this);
 				frm.setVisible(true);
 				frm.setSize(new Dimension(480, 320));
@@ -45,8 +54,9 @@ public class frmMain extends JFrame {
 		
 		JButton btnTraceroute = new JButton("TRACEROUTE");
 		btnTraceroute.addMouseListener(new MouseAdapter() {
+			// Show frmTraceroute
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mousePressed(MouseEvent e) {
 				frmTraceroute frm = new frmTraceroute(frmMain.this);
 				frm.setVisible(true);
 				frm.setSize(new Dimension(480, 320));
@@ -57,8 +67,9 @@ public class frmMain extends JFrame {
 		
 		JButton btnDetail = new JButton("DETAIL");
 		btnDetail.addMouseListener(new MouseAdapter() {
+			// Show frmDetail
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mousePressed(MouseEvent e) {
 				frmDetails frm = new frmDetails(frmMain.this);
 				frm.setVisible(true);
 				frm.setSize(new Dimension(480, 320));
@@ -79,22 +90,19 @@ public class frmMain extends JFrame {
 		
 		JButton btnX = new JButton("X");
 		btnX.addMouseListener(new MouseAdapter() {
+			// Shut down the device
 			@Override
 			public void mousePressed(MouseEvent e) {
 				try
 				{
 					Runtime r = Runtime.getRuntime();
 					Process process = r.exec("sudo shutdown -h now");
-					
 				}
 				catch(Exception E)
 				{
-					
-					
+							
 				}
-				
 			}
-			
 		});
 		btnX.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		
@@ -106,32 +114,50 @@ public class frmMain extends JFrame {
 		
 		JLabel lblSubnet = new JLabel("x.x.x.x");
 		lblSubnet.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		
+		JButton btnRefresh = new JButton("Refresh");
+		btnRefresh.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				try {
+					lblIPAddress.setText(GetLocalAddressIPv4());
+					lblGateway.setText(GetGateway());
+					lblSubnet.setText(MaskSubNet());
+				} catch (UnknownHostException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnRefresh.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(32)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addComponent(lblAdresseDuRouteur)
-								.addComponent(lblMasqueDeSousrseau)
-								.addComponent(lblAdresseIp, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(lblIPAddress, GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-								.addComponent(lblGateway, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(lblSubnet, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(btnPing)
-							.addGap(33)
-							.addComponent(btnTraceroute)
-							.addGap(34)
-							.addComponent(btnDetail)))
-					.addContainerGap(36, Short.MAX_VALUE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(407, Short.MAX_VALUE)
-					.addComponent(btnX)
+							.addGap(32)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+										.addComponent(lblAdresseDuRouteur)
+										.addComponent(lblMasqueDeSousrseau)
+										.addComponent(lblAdresseIp, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE))
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+										.addComponent(lblIPAddress, GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+										.addComponent(lblGateway, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(lblSubnet, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(btnPing)
+									.addGap(33)
+									.addComponent(btnTraceroute)
+									.addGap(34)
+									.addComponent(btnDetail))))
+						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+							.addGap(153)
+							.addComponent(btnRefresh, GroupLayout.PREFERRED_SIZE, 137, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
+							.addComponent(btnX)))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
@@ -152,11 +178,12 @@ public class frmMain extends JFrame {
 						.addComponent(lblGateway, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblMasqueDeSousrseau, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-							.addComponent(btnX))
+						.addComponent(lblMasqueDeSousrseau, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblSubnet, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(btnX)
+						.addComponent(btnRefresh, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap())
 		);
 		getContentPane().setLayout(groupLayout);
@@ -164,12 +191,9 @@ public class frmMain extends JFrame {
 		lblIPAddress.setText(GetLocalAddressIPv4());
 		lblGateway.setText(GetGateway());
 		lblSubnet.setText(MaskSubNet());
-		/*
-		List<String> lst = GetGatewayAddress();
-		lblGateway.setText(lst.get(0));
-		lblSubnet.setText(lst.get(3));*/
 	}
 	
+	// Return the subnet mask
 	public String MaskSubNet()
 	{
 		try
@@ -181,26 +205,17 @@ public class frmMain extends JFrame {
 			String tmp = "";
             while ((line4 = in4.readLine()) != null) 
             {
-                tmp = line4.toString();
-                
+                tmp = line4.toString();   
             }
-            
-            return tmp;
-			
-	        
-	        
+            return tmp;   
 		}
 		catch(Exception e )
 		{
-			
-			return "";
-			
+			return "";	
 		}
-		
 	}
 	
-	
-	
+	// Return the gateway
 	public String GetGateway()
 	{
 		try
@@ -213,31 +228,17 @@ public class frmMain extends JFrame {
             while ((line4 = in4.readLine()) != null) 
             {
                 tmp = line4.toString();
-                
             }
-            
             return tmp;
-			
-	        
-	        
 		}
 		catch(Exception e )
 		{
-			
 			return "";
-			
 		}
-		
-		
 	}
 	
-	
-	
-	
-	// Hand written code
+	// Return the ipv4 address
 	public String GetLocalAddressIPv4() throws UnknownHostException {
-		/*InetAddress IP = InetAddress.getLocalHost(); // THE PROB IS HERE BRO
-		return IP.getHostAddress();*/
 		try
 		{
 			Runtime r = Runtime.getRuntime();
@@ -248,18 +249,12 @@ public class frmMain extends JFrame {
 	        while ((line = in.readLine()) != null) 
 	        {
 	        	tmp += line.toString();
-	            //lblAdresse.setText(line.toString());
 	        }
 	        return tmp;
-			
-	        
-	        
 		}
 		catch(Exception e )
 		{
-			
 			return "";
-			
 		}
 		
 		
@@ -292,7 +287,6 @@ public class frmMain extends JFrame {
 				result.add(match.group().toString());
 					if (line.contains("/")) {
 						submask = matchSubnetMask[Integer.parseInt(line.split("/")[1].split(" ")[0])];
-						//result.add(submask);
 						submask=null;
 
 					}
@@ -310,5 +304,4 @@ public class frmMain extends JFrame {
 			}
 			return result;
 	}
-
 }
