@@ -1,3 +1,11 @@
+/*
+ * Authors : F. Troller, D. Schito, B. Chauche
+ * Date : 2017-2018
+ * Project : NSAei
+ * Class : frmTraceroute.java
+ * Description : View used to configure a traceroute
+ */
+
 package NSAei_pkg;
 
 import java.awt.Color;
@@ -43,7 +51,7 @@ public class frmTraceroute extends JFrame {
 		JButton btn192168 = new JButton("192.168.");
 		btn192168.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mousePressed(MouseEvent e) {
 				tfIPAddress.setText(btn192168.getText());
 			}
 		});
@@ -53,7 +61,7 @@ public class frmTraceroute extends JFrame {
 		JButton btn100 = new JButton("10.0.");
 		btn100.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mousePressed(MouseEvent e) {
 				tfIPAddress.setText(btn100.getText());
 			}
 		});
@@ -62,7 +70,7 @@ public class frmTraceroute extends JFrame {
 		JButton btn10128 = new JButton("10.128.");
 		btn10128.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mousePressed(MouseEvent e) {
 				tfIPAddress.setText(btn10128.getText());
 			}
 		});
@@ -71,7 +79,7 @@ public class frmTraceroute extends JFrame {
 		JButton btn17216 = new JButton("172.16.");
 		btn17216.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mousePressed(MouseEvent e) {
 				tfIPAddress.setText(btn17216.getText());
 			}
 		});
@@ -80,7 +88,7 @@ public class frmTraceroute extends JFrame {
 		JButton btnTraceroute = new JButton("TRACEROUTE");
 		btnTraceroute.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mousePressed(MouseEvent e) {
 				frmTracerouteResult frm = new frmTracerouteResult(frmTraceroute.this, tfIPAddress.getText());
 				frm.setVisible(true);
 				frm.setSize(new Dimension(480, 320));
@@ -93,7 +101,7 @@ public class frmTraceroute extends JFrame {
 		JButton btn1 = new JButton("1");
 		btn1.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mousePressed(MouseEvent e) {
 				tfIPAddress.setText(tfIPAddress.getText().concat(btn1.getText()));
 			}
 		});
@@ -102,7 +110,7 @@ public class frmTraceroute extends JFrame {
 		JButton btn2 = new JButton("2");
 		btn2.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mousePressed(MouseEvent e) {
 				tfIPAddress.setText(tfIPAddress.getText().concat(btn2.getText()));
 			}
 		});
@@ -111,7 +119,7 @@ public class frmTraceroute extends JFrame {
 		JButton btn3 = new JButton("3");
 		btn3.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mousePressed(MouseEvent e) {
 				tfIPAddress.setText(tfIPAddress.getText().concat(btn3.getText()));
 			}
 		});
@@ -120,7 +128,7 @@ public class frmTraceroute extends JFrame {
 		JButton btn4 = new JButton("4");
 		btn4.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mousePressed(MouseEvent e) {
 				tfIPAddress.setText(tfIPAddress.getText().concat(btn4.getText()));
 			}
 		});
@@ -129,7 +137,7 @@ public class frmTraceroute extends JFrame {
 		JButton btn5 = new JButton("5");
 		btn5.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mousePressed(MouseEvent e) {
 				tfIPAddress.setText(tfIPAddress.getText().concat(btn5.getText()));
 			}
 		});
@@ -138,7 +146,7 @@ public class frmTraceroute extends JFrame {
 		JButton btn6 = new JButton("6");
 		btn6.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mousePressed(MouseEvent e) {
 				tfIPAddress.setText(tfIPAddress.getText().concat(btn6.getText()));
 			}
 		});
@@ -147,7 +155,7 @@ public class frmTraceroute extends JFrame {
 		JButton btn7 = new JButton("7");
 		btn7.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mousePressed(MouseEvent e) {
 				tfIPAddress.setText(tfIPAddress.getText().concat(btn7.getText()));
 			}
 		});
@@ -156,7 +164,7 @@ public class frmTraceroute extends JFrame {
 		JButton btn8 = new JButton("8");
 		btn8.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mousePressed(MouseEvent e) {
 				tfIPAddress.setText(tfIPAddress.getText().concat(btn8.getText()));
 			}
 		});
@@ -165,7 +173,7 @@ public class frmTraceroute extends JFrame {
 		JButton btn9 = new JButton("9");
 		btn9.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mousePressed(MouseEvent e) {
 				tfIPAddress.setText(tfIPAddress.getText().concat(btn9.getText()));
 			}
 		});
@@ -174,7 +182,7 @@ public class frmTraceroute extends JFrame {
 		JButton btnDel = new JButton("SUP");
 		btnDel.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mousePressed(MouseEvent e) {
 				tfIPAddress.setText((tfIPAddress.getText() == null || tfIPAddress.getText().length() == 0) ? null : (tfIPAddress.getText().substring(0, tfIPAddress.getText().length() - 1)));
 			}
 		});
@@ -183,7 +191,7 @@ public class frmTraceroute extends JFrame {
 		JButton btn0 = new JButton("0");
 		btn0.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mousePressed(MouseEvent e) {
 				tfIPAddress.setText(tfIPAddress.getText().concat(btn0.getText()));
 			}
 		});
@@ -192,7 +200,7 @@ public class frmTraceroute extends JFrame {
 		JButton btnPoint = new JButton(".");
 		btnPoint.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mousePressed(MouseEvent e) {
 				tfIPAddress.setText(tfIPAddress.getText().concat(btnPoint.getText()));
 			}
 		});
@@ -201,7 +209,7 @@ public class frmTraceroute extends JFrame {
 		JButton btnBack = new JButton("Retour");
 		btnBack.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mousePressed(MouseEvent e) {
 				frmParent.setVisible(true);
 				frmTraceroute.this.setVisible(false);
 			}

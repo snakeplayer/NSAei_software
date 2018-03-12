@@ -115,7 +115,7 @@ public class frmMain extends JFrame {
 		JLabel lblSubnet = new JLabel("x.x.x.x");
 		lblSubnet.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
-		JButton btnRefresh = new JButton("Refresh");
+		JButton btnRefresh = new JButton("Actualiser");
 		btnRefresh.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {

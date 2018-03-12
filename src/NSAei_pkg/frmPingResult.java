@@ -1,3 +1,11 @@
+/*
+ * Authors : F. Troller, D. Schito, B. Chauche
+ * Date : 2017-2018
+ * Project : NSAei
+ * Class : frmPingResult.java
+ * Description : View used to show ping result
+ */
+
 package NSAei_pkg;
 
 import javax.swing.JFrame;
@@ -48,7 +56,7 @@ public class frmPingResult extends JFrame {
 		JButton button = new JButton("Retour");
 		button.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mousePressed(MouseEvent e) {
 				frmParent.setVisible(true);
 				frmPingResult.this.setVisible(false);
 			}
@@ -88,6 +96,7 @@ public class frmPingResult extends JFrame {
 	                p = Runtime.getRuntime().exec("ping -c 4 " + IpAddress);
 	                BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream(), "UTF-8"));
 	                lblOutput.setText("<html>");
+	                lblOutput.setText(lblOutput.getText() + "Ping en cours...");
 	                while ((s = br.readLine()) != null)
 	                    lblOutput.setText(lblOutput.getText() + s + "<br/>");
 	                lblOutput.setText(lblOutput.getText() + "</html>");
@@ -100,6 +109,5 @@ public class frmPingResult extends JFrame {
 	            }
 	        }
 	      }.start();
-		
 	}
 }

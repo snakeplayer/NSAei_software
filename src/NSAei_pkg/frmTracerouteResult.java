@@ -1,3 +1,11 @@
+/*
+ * Authors : F. Troller, D. Schito, B. Chauche
+ * Date : 2017-2018
+ * Project : NSAei
+ * Class : frmTracerouteResult.java
+ * Description : View used to show traceroute result
+ */
+
 package NSAei_pkg;
 
 import javax.swing.JFrame;
@@ -39,11 +47,10 @@ public class frmTracerouteResult extends JFrame {
 		frmTracerouteResult.this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frmTracerouteResult.this.setUndecorated(true);
 		
-		
 		JButton btnBack = new JButton("Retour");
 		btnBack.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mousePressed(MouseEvent e) {
 				frmParent.setVisible(true);
 				frmTracerouteResult.this.setVisible(false);
 			}
@@ -125,18 +132,7 @@ public class frmTracerouteResult extends JFrame {
 				        }
 			        }
 			      }.start();
-				
-				
 			}
-		});
-		
-		// Hand written code
-		/*
-		JScrollPane scrollzonetexte = new JScrollPane(taOutput, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		frmTracerouteResult.this.getContentPane().add(scrollzonetexte, BorderLayout.CENTER);*/
-		
-		
-        
-        
+		});        
 	}
 }

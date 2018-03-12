@@ -38,42 +38,91 @@ public class frmDetails extends JFrame {
 		
 		JPanel panel = new JPanel();
 		
-		JLabel lblNetmask = new JLabel("Netmask:");
+		JLabel lblNetmask = new JLabel("netmask");
+		lblNetmask.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
-		JLabel lblAdresse = new JLabel("Adresse:");
+		JLabel lblAdresse = new JLabel("adresse");
+		lblAdresse.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
-		JLabel lblAddresseMac = new JLabel("Addresse MAC:");
+		JLabel lblAddresseMac = new JLabel("adresse MAC");
+		lblAddresseMac.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
 		JLabel lblNomDhote = new JLabel("nom d'hote");
+		lblNomDhote.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
 		JLabel lblGateway = new JLabel("gateway");
+		lblGateway.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		
+		JLabel lblAdresse_1 = new JLabel("Adresse :");
+		lblAdresse_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		
+		JLabel lblNetmask_1 = new JLabel("Netmask :");
+		lblNetmask_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		
+		JLabel lblAddresseMac_1 = new JLabel("Addresse MAC :");
+		lblAddresseMac_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		
+		JLabel lblNomDhote_1 = new JLabel("Nom d'hote :");
+		lblNomDhote_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		
+		JLabel lblGateway_1 = new JLabel("Gateway :");
+		lblGateway_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(67)
-					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+					.addGap(12)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+							.addComponent(lblNetmask_1, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED))
+						.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+							.addComponent(lblAdresse_1, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
+							.addGap(2))
+						.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+							.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+								.addComponent(lblAddresseMac_1)
+								.addComponent(lblNomDhote_1)
+								.addComponent(lblGateway_1))
+							.addPreferredGap(ComponentPlacement.UNRELATED)))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblGateway)
 						.addComponent(lblNomDhote)
 						.addComponent(lblAddresseMac)
-						.addComponent(lblNetmask)
-						.addComponent(lblAdresse))
-					.addContainerGap(165, Short.MAX_VALUE))
+						.addComponent(lblAdresse)
+						.addComponent(lblNetmask))
+					.addContainerGap(622, Short.MAX_VALUE))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(102)
-					.addComponent(lblAdresse)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblNetmask)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblAddresseMac)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblNomDhote)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblGateway)
-					.addContainerGap(85, Short.MAX_VALUE))
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addGap(102)
+								.addGroup(gl_panel.createSequentialGroup()
+									.addComponent(lblAdresse_1, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(lblNetmask_1, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(lblAddresseMac_1, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(lblNomDhote_1, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lblGateway_1, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGroup(gl_panel.createSequentialGroup()
+								.addComponent(lblAdresse)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(lblNetmask)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(lblAddresseMac)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(lblNomDhote))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lblGateway)))
+					.addContainerGap(87, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
 		
@@ -88,7 +137,7 @@ public class frmDetails extends JFrame {
 			}
 		});
 		
-		JButton btnRefresh = new JButton("Refresh");
+		JButton btnRefresh = new JButton("Actualiser");
 		btnRefresh.addMouseListener(new MouseAdapter() {
 			// Refresh interface info
 			@Override
@@ -153,7 +202,7 @@ public class frmDetails extends JFrame {
 				}
 			}
 		});
-		btnRefresh.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnRefresh.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		GroupLayout groupLayout = new GroupLayout(this.getContentPane());
 		groupLayout.setHorizontalGroup(
@@ -162,17 +211,23 @@ public class frmDetails extends JFrame {
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnRefresh, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(btnRefresh, GroupLayout.PREFERRED_SIZE, 147, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
-					.addGap(167)
-					.addComponent(btnRefresh, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 175, Short.MAX_VALUE)
+							.addComponent(btnRefresh, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE))
+						.addComponent(panel, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap())
 		);
 		this.getContentPane().setLayout(groupLayout);			
 	}
